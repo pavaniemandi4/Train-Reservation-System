@@ -19,18 +19,20 @@ struct Passenger {
 };
 
 struct Passenger* head = NULL;
-
-struct Train trains[3] = {
+struct Train trains[5] = {
     {101, "Express One", "Vizag", "Hyderabad", 50, 50},
     {102, "Super Fast", "Vizag", "Chennai", 40, 40},
-    {103, "Night Rider", "Vizag", "Bangalore", 30, 30}
+    {103, "Night Rider", "Vizag", "Bangalore", 30, 30},
+    {104, "vande bharat express", "Vizag", "mumbai",55,55 },
+    {105, "Godavari express", "Vizag", "Karnataka", 40,35}
+
 };
 
 // Display trains
 void displayTrains() {
     printf("\nAvailable Trains:\n");
     printf("No\tName\t\tFrom\tTo\tSeats\n");
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
         printf("%d\t%s\t%s\t%s\t%d\n",
                trains[i].number,
                trains[i].name,
@@ -42,7 +44,7 @@ void displayTrains() {
 
 // Find train index
 int findTrain(int trainNo) {
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 5; i++) {
         if (trains[i].number == trainNo)
             return i;
     }
@@ -61,12 +63,12 @@ void bookTicket() {
 
     int index = findTrain(trainNo);
     if (index == -1) {
-        printf("❌ Invalid train number!\n");
+        printf(" Invalid train number!\n");
         return;
     }
 
     if (trains[index].availableSeats <= 0) {
-        printf("❌ No seats available!\n");
+        printf(" No seats available!\n");
         return;
     }
 
@@ -84,7 +86,7 @@ void bookTicket() {
     head = newNode;
 
     trains[index].availableSeats--;
-    printf("✅ Ticket booked successfully!\n");
+    printf(" Ticket booked successfully!\n");
 }
 
 // View bookings
@@ -115,7 +117,7 @@ void cancelTicket() {
     }
 
     if (temp == NULL) {
-        printf("❌ Booking not found.\n");
+        printf(" Booking not found.\n");
         return;
     }
 
@@ -129,7 +131,7 @@ void cancelTicket() {
         prev->next = temp->next;
 
     free(temp);
-    printf("✅ Ticket cancelled successfully!\n");
+    printf(" Ticket cancelled successfully!\n");
 }
 
 // Main menu
